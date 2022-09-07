@@ -19,13 +19,14 @@ constexpr auto numArrivals = 2000;
 constexpr auto runs = 200;
 
 int main() {
+	auto startTime = high_resolution_clock::now();
+
 	default_random_engine rand_gen((unsigned int)system_clock::now().time_since_epoch().count());
 	exponential_distribution<timetype> jobSize(mu);
 	exponential_distribution<timetype> interarrivalTime(lamda);
 	timetype queueSize;
 	timetype averageResponseTime = 0;
 
-	auto startTime = high_resolution_clock::now();
 
 	for(auto j = 0; j < runs; ++j) {
 		queueSize = 0;
